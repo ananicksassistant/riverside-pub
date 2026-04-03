@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Riverside Company - Ulft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #333; }
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), #2c1810; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; position: relative; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 0.5rem; color: #d4af37; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; font-style: italic; }
+        .hero-nav { position: absolute; top: 0; width: 100%; padding: 1.5rem; display: flex; justify-content: center; gap: 2rem; background: rgba(0,0,0,0.3); }
+        .hero-nav a { color: white; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .hero-nav a:hover { color: #d4af37; }
+        .cta-button { background: #d4af37; color: #2c1810; padding: 1rem 2.5rem; text-decoration: none; border-radius: 5px; font-weight: 600; text-transform: uppercase; }
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #2c1810; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .info-card { background: #f9f9f9; padding: 2rem; border-radius: 10px; text-align: center; border: 2px solid #d4af37; }
+        .info-card h3 { font-family: 'Playfair Display', serif; color: #2c1810; margin-bottom: 1rem; font-size: 1.5rem; }
+        .hours-table { width: 100%; margin-top: 1rem; font-size: 0.9rem; }
+        .hours-table td { padding: 0.5rem; text-align: left; }
+        .hours-table td:first-child { font-weight: 600; color: #2c1810; }
+        .sections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .section-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .section-header { background: #2c1810; color: white; padding: 1.5rem; text-align: center; }
+        .section-header h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #d4af37; }
+        .section-content { padding: 2rem; }
+        .section-content ul { list-style: none; padding: 0; }
+        .section-content li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        .section-content li:before { content: '✓'; color: #d4af37; margin-right: 0.5rem; font-weight: bold; }
+        .menu-section { background: #2c1810; color: white; }
+        .menu-section h2 { color: #d4af37; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .menu-category h3 { color: #d4af37; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #d4af37; padding-bottom: 0.5rem; }
+        .menu-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px dashed #555; }
+        .menu-item-name { font-weight: 600; }
+        .menu-item-desc { font-size: 0.9rem; color: #aaa; display: block; }
+        .menu-item-price { color: #d4af37; font-weight: 600; }
+        .contact-section { background: #f5f5f5; }
+        .contact-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .contact-info h3 { font-family: 'Playfair Display', serif; color: #2c1810; margin-bottom: 1.5rem; }
+        .contact-info p { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .contact-info p::before { content: '•'; position: absolute; left: 0; color: #d4af37; font-weight: bold; }
+        .contact-highlight { background: white; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d4af37; margin-top: 1.5rem; }
+        .contact-highlight h4 { color: #d4af37; margin-bottom: 0.5rem; }
+        .seasonal-hours { background: #2c1810; color: #d4af37; padding: 1rem; border-radius: 5px; margin: 2rem 0; text-align: center; }
+        footer { background: #1a0f0a; color: white; text-align: center; padding: 2rem; }
+        .social-links { margin-bottom: 1rem; }
+        .social-links a { color: #d4af37; text-decoration: none; margin: 0 1rem; font-size: 1.2rem; }
+        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } .hero-nav { flex-wrap: wrap; gap: 1rem; padding: 1rem; } section { padding: 3rem 1rem; } h2 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <nav class="hero-nav">
+            <a href="#over">Over Ons</a>
+            <a href="#sections">Onze Plekken</a>
+            <a href="#menu">Menu</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="hero-content">
+            <h1>The Riverside Company</h1>
+            <p>Echte Engelse sfeer aan de Oude IJssel</p>
+            <a href="#contact" class="cta-button">Bel 06 49636660</a>
+        </div>
+    </header>
+
+    <section id="over">
+        <h2>Welkom aan de Oude IJssel</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🍺 The Riverside Pub</h3>
+                <p>"Het Wapen van Ulft" - Kom langs voor een pint Guinness, darts, biljart, sport op groot scherm of een potje schaak.</p>
+            </div>
+            <div class="info-card">
+                <h3>☕ Tearoom & Antiques</h3>
+                <p>Geniet van een uitgebreide high tea met scones, fudge en andere Engelse lekkernijen.</p>
+            </div>
+            <div class="info-card">
+                <h3>🎵 Poppodium Cocagne</h3>
+                <p>Unieke vintage pop sfeer uit de jaren 80-90. Te huur voor feestjes, optredens of als repetitieruimte.</p>
+            </div>
+        </div>
+        <div class="seasonal-hours">
+            <strong>1 mei t/m 1 oktober:</strong> Uitgebreide openingstijden | <strong>1 oktober t/m 1 mei:</strong> Aangepaste wintertijden
+        </div>
+    </section>
+
+    <section id="sections">
+        <h2>Drie Unieke Ervaringen</h2>
+        <div class="sections-grid">
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>🍺 The Riverside Pub</h3>
+                    <p>Het Wapen van Ulft</p>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 1rem; font-style: italic;">Echte pub-sfeer!</p>
+                    <ul>
+                        <li>Guinness & speciaalbieren</li>
+                        <li>Darts & biljart</li>
+                        <li>Sport op groot scherm</li>
+                        <li>Pub klassieken</li>
+                        <li>Gezellige familiepub</li>
+                    </ul>
+                    <table class="hours-table" style="margin-top: 1.5rem;">
+                        <tr><td colspan="2"><strong>Zomer (1 mei - 1 okt)</strong></td></tr>
+                        <tr><td>Do</td><td>15:00 - 23:00</td></tr>
+                        <tr><td>Vr</td><td>13:00 - 24:00</td></tr>
+                        <tr><td>Za</td><td>13:00 - 01:00</td></tr>
+                        <tr><td>Zo</td><td>13:00 - 22:00</td></tr>
+                        <tr><td colspan="2"><strong>Winter (1 okt - 1 mei)</strong></td></tr>
+                        <tr><td>Do</td><td>16:00 - 23:00</td></tr>
+                        <tr><td>Vr</td><td>14:00 - 24:00</td></tr>
+                        <tr><td>Za</td><td>14:00 - 01:00</td></tr>
+                        <tr><td>Zo</td><td>14:00 - 22:00</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>☕ Tearoom & Antiques</h3>
+                    <p>Meesterbloem</p>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 1rem; font-style: italic;">High tea en antiek!</p>
+                    <ul>
+                        <li>Uitgebreide high tea</li>
+                        <li>Home made scones</li>
+                        <li>Verrukkelijke fudge</li>
+                        <li>Engelse lekkernijen</li>
+                        <li>Antiekwinkeltje</li>
+                    </ul>
+                    <table class="hours-table" style="margin-top: 1.5rem;">
+                        <tr><td colspan="2"><strong>Openingstijden</strong></td></tr>
+                        <tr><td>Vr</td><td>14:00 - 17:00</td></tr>
+                        <tr><td>Za</td><td>14:00 - 17:00</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>🎵 Poppodium Cocagne</h3>
+                    <p>Discotheek & Poppodium</p>
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 1rem; font-style: italic;">Terug naar de jaren 80-90!</p>
+                    <ul>
+                        <li>Feestjes & partijen</li>
+                        <li>Live optredens</li>
+                        <li>Repetitieruimte</li>
+                        <li>Authentieke vintage sfeer</li>
+                        <li>Te huur op aanvraag</li>
+                    </ul>
+                    <div class="contact-highlight" style="margin-top: 1.5rem;">
+                        <h4>🎉 Boek nu!</h4>
+                        <p>Contact ons voor beschikbaarheid.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2>Onze Menukaart</h2>
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>🍺 Bieren</h3>
+                <div class="menu-item"><div><span class="menu-item-name">Heineken</span><span class="menu-item-desc">Hollands pilsener</span></div><span class="menu-item-price">€3,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Amstel</span><span class="menu-item-desc">Mild pils</span></div><span class="menu-item-price">€3,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Guinness</span><span class="menu-item-desc">Ierse stout</span></div><span class="menu-item-price">€4,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Speciaalbier</span><span class="menu-item-desc">Wisselend assortiment</span></div><span class="menu-item-price">€5,00</span></div>
+            </div>
+            <div class="menu-category">
+                <h3>🍔 Pub Classics</h3>
+                <div class="menu-item"><div><span class="menu-item-name">Fish & Chips</span><span class="menu-item-desc">Kabeljauw met friet</span></div><span class="menu-item-price">€16,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Bangers & Mash</span><span class="menu-item-desc">Worstjes met puree</span></div><span class="menu-item-price">€14,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Riverside Burger</span><span class="menu-item-desc">200g rund met cheddar</span></div><span class="menu-item-price">€15,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Ploughman's</span><span class="menu-item-desc">Kaas, ham, augurk</span></div><span class="menu-item-price">€12,50</span></div>
+            </div>
+            <div class="menu-category">
+                <h3>🥃 Whisky's</h3>
+                <div class="menu-item"><div><span class="menu-item-name">Jameson</span><span class="menu-item-desc">Ierland</span></div><span class="menu-item-price">€4,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Jack Daniel's</span><span class="menu-item-desc">Tennessee</span></div><span class="menu-item-price">€5,00</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Glenfiddich 12y</span><span class="menu-item-desc">Schotse single malt</span></div><span class="menu-item-price">€7,50</span></div>
+                <div class="menu-item"><div><span class="menu-item-name">Riverside Special</span><span class="menu-item-desc">Huisgemaakt</span></div><span class="menu-item-price">€8,50</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact & Locatie</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>📍 The Riverside Company</h3>
+                <p>Bongersstraat 4<br>7071 CN Ulft<br>Oude IJsselstreek</p>
+                <p>📞 06 49636660</p>
+                <div class="contact-highlight">
+                    <h4>🎶 Live Muziek</h4>
+                    <p>Elke maand originele live muziek met gratis toegang!</p>
+                </div>
+                <div class="contact-highlight">
+                    <h4>🍽️ Vrijdag Daghap</h4>
+                    <p>Elke vrijdag een heerlijke daghap!</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>🎯 Bereikbaarheid</h3>
+                <p>Gratis parkeergelegenheid</p>
+                <p>Terras aan het water</p>
+                <p>Hondenvriendelijk</p>
+                <div class="contact-highlight">
+                    <h4>💡 Broedplaats</h4>
+                    <p>Broedplaats voor creativiteit in Ulft!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links"><a href="#">Facebook</a><a href="#">Instagram</a></div>
+        <p>&copy; 2026 The Riverside Company. Alle rechten voorbehouden.</p>
+    </footer>
+</body>
+</html>
