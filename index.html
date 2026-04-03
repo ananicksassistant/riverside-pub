@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Riverside Pub - Ulft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232c1810" width="1200" height="600"/><rect fill="%233d2418" x="100" y="100" width="200" height="400"/><rect fill="%233d2418" x="400" y="100" width="200" height="400"/><rect fill="%233d2418" x="700" y="100" width="200" height="400"/><rect fill="%23d4af37" x="150" y="150" width="100" height="150" opacity="0.3"/><rect fill="%23d4af37" x="450" y="150" width="100" height="150" opacity="0.3"/><rect fill="%23d4af37" x="750" y="150" width="100" height="150" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #d4af37;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .hero-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .hero-nav a:hover {
+            color: #d4af37;
+        }
+
+        .cta-button {
+            background: #d4af37;
+            color: #2c1810;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c1810;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #d4af37;
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c1810;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            color: #666;
+        }
+
+        .hours-table {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .hours-table td {
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        .hours-table td:first-child {
+            font-weight: 600;
+            color: #2c1810;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: #2c1810;
+            color: white;
+        }
+
+        .menu-section h2 {
+            color: #d4af37;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .menu-category h3 {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #555;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+        }
+
+        .menu-item-desc {
+            font-size: 0.9rem;
+            color: #aaa;
+            display: block;
+        }
+
+        .menu-item-price {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f5f5f5;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c1810;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .contact-info p::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .reservation-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c1810;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .submit-btn {
+            background: #2c1810;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #d4af37;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a0f0a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <nav class="hero-nav">
+            <a href="#over">Over Ons</a>
+            <a href="#menu">Menu</a>
+            <a href="#contact">Contact</a>
+            <a href="#reserveren">Reserveren</a>
+        </nav>
+        <div class="hero-content fade-in">
+            <h1>The Riverside Pub</h1>
+            <p>Echte Engelse sfeer in het hart van Ulft</p>
+            <a href="#reserveren" class="cta-button">Reserveer een tafel</a>
+        </div>
+    </header>
+
+    <!-- Over Ons / Openingstijden -->
+    <section id="over">
+        <h2>Welkom bij The Riverside</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🍺 Authentieke Sfeer</h3>
+                <p>Geniet van een traditionele Engelse pub-ervaring aan de Oude IJssel. Met een uitgebreide selectie speciaalbieren, whisky's en klassieke pub-gerechten.</p>
+            </div>
+            <div class="info-card">
+                <h3>📍 Locatie</h3>
+                <p>Varsseveldseweg 23<br>7071 TZ Ulft<br><br>Gelegen aan de prachtige Oude IJssel met uitzicht over het water.</p>
+            </div>
+            <div class="info-card">
+                <h3>🕐 Openingstijden</h3>
+                <table class="hours-table">
+                    <tr><td>Maandag - Donderdag</td><td>16:00 - 00:00</td></tr>
+                    <tr><td>Vrijdag</td><td>16:00 - 02:00</td></tr>
+                    <tr><td>Zaterdag</td><td>14:00 - 02:00</td></tr>
+                    <tr><td>Zondag</td><td>14:00 - 22:00</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2>Onze Menukaart</h2>
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>🍺 Bieren van de Tap</h3>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Heineken</span>
+                        <span class="menu-item-desc">Hollands pilsener</span>
+                    </div>
+                    <span class="menu-item-price">€3,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Amstel</span>
+                        <span class="menu-item-desc">Mild pils</span>
+                    </div>
+                    <span class="menu-item-price">€3,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Guinness</span>
+                        <span class="menu-item-desc">Ierse stout</span>
+                    </div>
+                    <span class="menu-item-price">€4,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Speciaalbier van de maand</span>
+                        <span class="menu-item-desc">Wisselend assortiment</span>
+                    </div>
+                    <span class="menu-item-price">€5,00</span>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>🍔 Pub Classics</h3>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Fish & Chips</span>
+                        <span class="menu-item-desc">Gebakken kabeljauw met dikke frieten</span>
+                    </div>
+                    <span class="menu-item-price">€16,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Bangers & Mash</span>
+                        <span class="menu-item-desc">Verse worstjes met aardappelpuree</span>
+                    </div>
+                    <span class="menu-item-price">€14,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Riverside Burger</span>
+                        <span class="menu-item-desc">200g rundvlees met cheddar en spek</span>
+                    </div>
+                    <span class="menu-item-price">€15,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Ploughman's Lunch</span>
+                        <span class="menu-item-desc">Kaas, ham, augurk en stokbrood</span>
+                    </div>
+                    <span class="menu-item-price">€12,50</span>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>🥃 Whisky's & Gedistilleerd</h3>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Jameson (Ierland)</span>
+                        <span class="menu-item-desc">Driemaal gedistilleerd</span>
+                    </div>
+                    <span class="menu-item-price">€4,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Jack Daniel's (USA)</span>
+                        <span class="menu-item-desc">Tennessee whiskey</span>
+                    </div>
+                    <span class="menu-item-price">€5,00</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Glenfiddich 12y (Schotland)</span>
+                        <span class="menu-item-desc">Single malt</span>
+                    </div>
+                    <span class="menu-item-price">€7,50</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <span class="menu-item-name">Riverside Special</span>
+                        <span class="menu-item-desc">Huisgemaakte cocktail</span>
+                    </div>
+                    <span class="menu-item-price">€8,50</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Reserveren -->
+    <section id="contact" class="contact-section">
+        <h2>Contact & Reserveren</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Contactgegevens</h3>
+                <p>📍 Varsseveldseweg 23, 7071 TZ Ulft</p>
+                <p>📞 0315 - 123 456</p>
+                <p>✉️ info@riverside-pub-ulft.nl</p>
+                <br>
+                <h3>Bereikbaarheid</h3>
+                <p>Gratis parkeergelegenheid</p>
+                <p>Terras aan het water</p>
+                <p>Hondenvriendelijk</p>
+            </div>
+
+            <div class="reservation-form" id="reserveren">
+                <h3 style="font-family: 'Playfair Display', serif; color: #2c1810; margin-bottom: 1.5rem;">Reserveer een tafel</h3>
+                <form onsubmit="event.preventDefault(); alert('Bedankt voor je reservering! We nemen contact met je op om deze te bevestigen.');">
+                    <div class="form-group">
+                        <label for="name">Naam *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefoon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Datum *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Tijd *</label>
+                        <select id="time" name="time" required>
+                            <option value="">Selecteer een tijd</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Aantal personen *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Selecteer</option>
+                            <option value="1">1 persoon</option>
+                            <option value="2">2 personen</option>
+                            <option value="3">3 personen</option>
+                            <option value="4">4 personen</option>
+                            <option value="5">5 personen</option>
+                            <option value="6">6 personen</option>
+                            <option value="7+">7+ personen (groepsreservering)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Opmerkingen</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Bijvoorbeeld dieetwensen, feestjes, etc."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Verstuur reservering</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p>&copy; 2026 The Riverside Pub Ulft. Alle rechten voorbehouden.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">🍺 Echte pub-sfeer aan de Oude IJssel 🍺</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
